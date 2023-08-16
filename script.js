@@ -223,4 +223,57 @@ switch(a){
     
 }
 
+
+
+let smoking = false;
+
+smoking == true ? smoking = `Ayush`:smoking = `Himanshu`;
+
+
+//This is our Array
+const brand = [`Zara`,`HM`,`Nike`,`max`,`lee`];
+
+const linearS = (arr,key) =>{
+    for(let i = 0;i<arr.length;i++){
+        if (key === arr[i])
+        return i
+    }
+    return -1;
+}
+
+const num = [98,1,723,10,5,8];
+
+const numMap = num.map((item)=>{
+    return item*2;
+})
+
+console.log(numMap); //Map function creates an new array for elements of the existing array
+
+const numFilter = num.filter((item)=>{
+    return item>100;
+})
+
+console.log(numFilter); //Filter also returns an array filtering all the elements inside an array.
+
+
+
+
+//This is our object
+const shirtBrand = {
+    size:40,
+    length:`XXL`,
+    brands: brand,
+    price:6000,
+    location:`New Delhi`,
+    totoalSpend:2000,
+    budget:function(){
+        return this.price-this.totoalSpend;
+    }
+    
+}
+
 */
+
+//DS
+
+

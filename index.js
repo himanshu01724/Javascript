@@ -55,16 +55,11 @@ document.querySelector(`.check`).addEventListener(`click`,()=>{
         document.querySelector(`.number`).textContent = numberS;
 
     }
-    else if(test>numberS){
-        document.querySelector(`.message`).textContent = `Number too high`;
+    else (test != numberS){
+        test>numberS ? document.querySelector(`.message`).textContent = `Number too high`:document.querySelector(`.message`).textContent = `Number too Lowwwwww`;
         ScoreD-=1;
         document.querySelector(`.score`).textContent = ScoreD;
         
-    }
-    else{
-        document.querySelector(`.message`).textContent = `Number too Lowwwwww`;
-        ScoreD-=1;
-        document.querySelector(`.score`).textContent = ScoreD;
     }
 
     
