@@ -13,14 +13,17 @@ for(let i=0;i<btnShow.length;i++){
          });
 }
 
-// .addEventListener(`click`,()=>{
-//     console.log(`click`);
-//     btn1.style.display = `block`;
-//     overLay.style.display = `block`;
+const closing = document.querySelector(`.close-modal`);
 
-// });
-
-document.querySelector(`.close-modal`).addEventListener(`click`,()=>{
+closing.addEventListener(`click`,()=>{
     btn1.style.display = `none`;
     overLay.style.display = `none`;
+})
+
+document.addEventListener(`keydown`,function(e){
+    if (e.key === `Escape`){
+    btn1.style.display = `none`;
+    overLay.style.display = `none`;
+    }
+    
 })
