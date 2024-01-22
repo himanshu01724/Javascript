@@ -385,8 +385,8 @@ const [case0,case1,case2,case3,case4,case5,case6,case7,case8] = [[-2,1,-3,4,-1,2
 const test = [9,20,1,45,80,3]
 const testcase = [2,7,11,15]
 const sortedElement = test.slice().sort((a,b)=>a-b);
-
 const problem2 = [7,1,5,3,6,4]
+const quick = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
 
 
 //Problem Solutions
@@ -461,8 +461,6 @@ function stockProblem(nums){
 }
 
 
-const x = case0.slice().Set
-
 function containsDupsFromSets(nums){
     let newNums = new Set(nums)
     if (newNums.length != nums.length){
@@ -481,7 +479,144 @@ function containDupsFromBruteForce(nums){
     }
     return false
 }
-console.log(containDupsFromBruteForce(case0))
+
+
+//18 Jan 2024
+
+function QuickSort(nums){
+    if (nums.length < 1){
+        return nums
+    }
+
+    const pivot = nums[0]
+    const left = []
+    const right = []
+
+    for(let i=1;i<nums.length;i++){
+        if (nums[i]<pivot){
+            left.push(nums[i])
+        }
+        else{
+            right.push(nums[i])
+        }
+    }
+    return [...QuickSort(left),pivot,...QuickSort(right)]
+}
+
+function productOfSelf(nums){
+    const res = []
+    let pre = 1
+    let post = 1
+    for(let i=0;i<nums.length;i++){
+        res[i] = pre
+        pre *= nums[i]
+    }
+    for(let j = nums.length-2;j>=0;j--){
+        post *= nums[j+1]
+        res[j] *= post
+    }
+
+    return res
+}
+
+//22-January-2024
+
+const product = [-2,0,0,2,2]
+const product2 = [-1,0,1,2,-1,-4]
+
+function problem(nums){
+
+
+    for(i=0;i<nums.length;i++){
+        for(j=i+1;j<nums.length;j++){
+            const a = nums[i] === nums[j]
+            if(a)
+            return true
+        }
+    }
+    return false
+}
+
+function problemx(nums){
+    let first = nums[0]
+    let res = 0
+    for(i=1;i<nums.length;i++){
+        if(nums[i]<first)
+        first=nums[i]
+    res = Math.max(res,nums[i]-first)
+    }
+    return res
+}
+
+function problemY(nums){
+    const res = []
+    let pre = 1
+    let post = 1
+    for(i=0;i<nums.length;i++){
+        res[i] = pre
+        pre *= nums[i]
+    }
+    for(let j=nums.length-2;j>=0;j--){
+        post *= nums[j+1]
+        res[j]*= post
+    }
+    return res
+}
+
+const twoSumTwo = (nums,target) =>{
+    let l = 0
+    let r = nums.length -1;
+    while(l<r){
+        const check = nums[l]+nums[r]
+        if (check === target){
+            return [l+1,r+1]
+        }
+        else if (check > target){
+            r-=1;
+        }
+        else{
+            l+=1
+        }
+    }
+    return 0
+}
 
 
 
+const threeSum = (nums) =>{
+    const res = []
+    nums.sort((a,b)=>a-b)
+    for(i=0;i<nums.length;i++){
+        const a = nums[i]
+        
+        if(a > 0) break
+        if( i>0 && a === nums[i-1]) continue
+        
+        
+        let l = i+1
+        let r = nums.length-1
+        
+        while(l<r){
+            const check = a + nums[l] + nums[r]
+            if(check > 0){
+                r-=1;
+            }
+            else if(check< 0){
+                l+=1;
+            }
+            else{
+                res.push([a,nums[l],nums[r]])
+                l+=1;
+                r-=1;
+                while(l<r && nums[l]<nums[l-1]){
+                    l++;
+                }
+            }
+        }
+    }
+    return res
+}
+
+//console.log(threeSum(product))
+
+console.log(threeSum(product))
