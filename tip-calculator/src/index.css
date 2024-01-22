@@ -1,0 +1,17 @@
+body{
+    padding: 50px;
+    font-size: 22px;
+}
+
+
+h1{
+    text-shadow: 2px 2px aqua;
+}
+
+button{
+    height: 26px;
+    width: 60px;
+    background-color: rgb(11, 135, 229);
+    color: white;
+    border: 0px;
+}
