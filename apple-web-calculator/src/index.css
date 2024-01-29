@@ -1,0 +1,36 @@
+.main{
+    background-color: aqua;
+    min-height: 300px;
+    max-width: 400px;
+    margin-left: 38%;
+    margin-top:10%;
+}
+.result{
+    background-color: #E5E4E2;
+    height: 80px;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+.result h1{
+    margin-right: 20px;
+}
+.action{
+    background-color: bisque;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    min-height: 35px;
+
+}
+.action button{
+    height: 50px;
+    width: 100px;
+    background-color: #36454F;
+    color: white;
+    border: 1px solid white;
+
+}
+
+.action button:hover{
+    color: rgb(234, 11, 182);
+}
