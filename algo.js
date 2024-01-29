@@ -521,8 +521,7 @@ function productOfSelf(nums){
 
 //22-January-2024
 
-const product = [-2,0,0,2,2]
-const product2 = [-1,0,1,2,-1,-4]
+
 
 function problem(nums){
 
@@ -617,6 +616,94 @@ const threeSum = (nums) =>{
     return res
 }
 
-//console.log(threeSum(product))
+//25th January 2024
 
-console.log(threeSum(product))
+const product = [1,8,6,2,5,4,8,3,7]
+const product2 = [1,0,-1,-1,-4,2]
+const product3 = [9,20,1,45,80,3]
+const product4 = [5,4,-1,7,8]
+
+
+//29th January 2024
+
+
+function quickSort(nums){
+    if(nums.length < 1){
+        return nums;
+    }
+
+    const par = nums[0]
+    const front = []
+    const end = []
+    for(let i = 1;i<nums.length;i++){
+        if(par > nums[i]){
+            front.push(nums[i])
+        }
+        else
+            end.push(nums[i])
+    }
+    return [...quickSort(front),par,...quickSort(end)]
+}
+
+
+const Sum3 = (nums) =>{
+    const res = []
+    nums.sort((a,b)=>a-b)
+    for(i=0;i<nums.length;i++){
+        const a = nums[i];
+        if(a > 0) break;
+        if(i > 0 && a === nums[i-1]) continue
+        l = i+1,r = nums.length-1;
+        while(l < r){
+            const check = a + nums[l] + nums[r];
+            if (check < 0){
+                l+=1
+            }
+            else if (check > 0)
+            { r-=1}
+            else{
+                res.push([a,nums[l],nums[r]])
+                l+=1;
+                r-=1;
+                while(l<r && nums[l]< nums[l-1]){  //this part is for checking dups in the solution
+                    l+=1;
+                }
+            }
+        }
+    }
+    return res;
+
+}
+
+
+function mostWater(nums){
+    let res = 0
+    let l=0,r=nums.length-1;
+    while(l<r){
+        let area = (r-l) * Math.min(nums[l],nums[r])
+        res = Math.max(res,area)
+        if(nums[r]>nums[l]){
+            l+=1
+        }
+        else{
+            r-=1
+        }
+    }
+    return res
+}
+
+function maxSubArr(nums){
+    let max = nums[0]
+    let curr = 0
+    for(i=0;i<nums.length;i++){
+        if(curr<0)
+            curr = 0
+        curr+=nums[i]
+        console.log(`Curr val = ${curr}`)
+        max = Math.max(max,curr)
+        console.log(`Curr val = ${max}`)
+    }
+    return max
+}
+
+console.log(maxSubArr(product4))
