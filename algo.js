@@ -381,12 +381,12 @@
 
 //Test Cases
 
-const [case0,case1,case2,case3,case4,case5,case6,case7,case8] = [[-2,1,-3,4,-1,2,1,-5,4],[1,2,3,4],[-1,1,0,-3,3],[2,1,4,6],[1,1,1,3,3,4,3,2,4,2],[0],[3,1],[0,4,5,0,3,6],[2,14,18,22,3]]
-const test = [9,20,1,45,80,3]
-const testcase = [2,7,11,15]
-const sortedElement = test.slice().sort((a,b)=>a-b);
-const problem2 = [7,1,5,3,6,4]
-const quick = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+// const [case0,case1,case2,case3,case4,case5,case6,case7,case8] = [[-2,1,-3,4,-1,2,1,-5,4],[1,2,3,4],[-1,1,0,-3,3],[2,1,4,6],[1,1,1,3,3,4,3,2,4,2],[0],[3,1],[0,4,5,0,3,6],[2,14,18,22,3]]
+// const test = [9,20,1,45,80,3]
+// const testcase = [2,7,11,15]
+// const sortedElement = test.slice().sort((a,b)=>a-b);
+// const problem2 = [7,1,5,3,6,4]
+// const quick = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
 
 
 //Problem Solutions
@@ -621,7 +621,7 @@ const threeSum = (nums) =>{
 const product = [1,8,6,2,5,4,8,3,7]
 const product2 = [1,0,-1,-1,-4,2]
 const product3 = [9,20,1,45,80,3]
-const product4 = [5,4,-1,7,8]
+const product4 = [-1,2,-1,3,8,-4]
 
 
 //29th January 2024
@@ -706,4 +706,51 @@ function maxSubArr(nums){
     return max
 }
 
-console.log(maxSubArr(product4))
+//30th January 2024
+
+const test = [1,3,6,8,2]
+const test2 = [2,3,-2,4]
+const test1 = [-2,1,-3,11,5,-9]
+const test3 = [1,2,-3,4]
+
+//Another Approach
+function MaximumProductSubarray(nums){
+    if (nums.length<=1){
+        return nums.length === 0 ? 0: nums[0];
+    }
+    let MinPro = nums[0]
+    let MaxPro = nums[0]
+    let result = nums[0]
+    for(i=1;i<nums.length;i++){
+        console.log(`i = ${nums[i]}`)
+        if(nums[i]<0){
+            let temp = MaxPro
+            MaxPro = MinPro
+            MinPro = temp
+            
+        }
+        MaxPro = Math.max(nums[i],MaxPro*nums[i])
+        MinPro = Math.min(nums[i],nums[i]*MinPro)
+        console.log(`Max pro && Min pro = ${MaxPro}, ${MinPro}`)
+
+    result = Math.max(result,MaxPro)
+    console.log(`result = ${result}`)
+    }
+return result
+}
+
+const MaxProSub = (nums) =>{
+    let res = nums[0]
+    let currMax = 1, currMin = 1
+    for(i=1;i<nums.length;i++){
+        if (nums[i] === 0)
+            currMax = 1,currMin=1
+        currMax = Math.max(i*currMax,i*currMin,nums[i])
+        currMin = Math.min(i*currMax,i*currMin,nums[i])
+
+    res = Math.max(res,currMax)
+    }
+    return res
+}
+
+console.log(MaximumProductSubarray(test3))
