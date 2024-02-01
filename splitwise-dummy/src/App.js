@@ -1,5 +1,9 @@
 import React, {useState} from 'react'
 import "./index.css"
+import Button from './Components/Button'
+import FriendList from './Components/FriendList';
+import FormAddFriend from './Components/FormAddFriend';
+import FormSplitButton from './Components/FormSplitButton';
 
 const initialFriends = [
     {
@@ -21,88 +25,44 @@ const initialFriends = [
       balance: 0,
     },
   ];
-
-function Button({children, handleClick}){
-    return <button className = "button" onClick={handleClick}>{children}</button>
-}
-
-function FormSplitButton(){
-    return (
-    <form className = "form-split-bill">
-        <h2>Split a bill with X</h2>
-
-        <label>💰 Bill Value</label>
-        <input type = "text"/>
-
-        <label>👯‍♂️ Your Expense</label>
-        <input type = "text"/>
-
-        <label>🧍🏼‍♂️Clarks Expense</label>
-        <input type = "text" disabled/>
-
-        <label>💲Who is paying the bill</label>
-        <select>
-            <option value = {'user'}>You</option>
-            <option value = {'friend'}>Friend</option>
-        </select>
-        
-
-        <Button>Split bill</Button>
-    </form>)
-}
-  
-function FormAddFriend(){
-    return(
-        <form className = "form-add-friend">
-            <label>🙎🏼‍♀️Friend Name</label>
-            <input type = "text"/>
-            
-            <label>🌄Image URL</label>
-            <input type = "text"/>
-            
-            <Button>Select</Button>
-
-        </form>
-    )
-}
-
-function FriendsList(){
-    return (
-    initialFriends.map((value)=>(
-        <Friend friend={value} key = {value.id}/>
-    ))
-    )
-}
-
-function Friend({friend}){
-    return (<li>
-        <img src = {friend.image} alt = "xyz"/>
-        <h3>{friend.name}</h3>
-        {/*Conditional rendering */}
-        {friend.balance < 0 && <p className = "red">You owe {friend.name} {Math.abs(friend.balance)}$</p>}
-        {friend.balance > 0 && <p className = "green">Your friend {friend.name} owns you {Math.abs(friend.balance)}$</p>}
-        {friend.balance === 0 && <p>You and {friend.name} are even </p>}
-        <Button>Select</Button>
-        </li>)
-}
-
 function App(){
 
-const [hide,setHide] = useState(false)
+    const [hide,setHide] = useState(false)
+    const [friend,setFriend] = useState(initialFriends)
+    const [selected,setSelected] = useState(null)
+    
+    function handleFormAddFriend(){
+        setHide(test => !test)
+    }
 
-function handleFormAddFriend(){
-    setHide(test => !test)
-}
-
-    return(
-        <div className = "app">
-        <div className = "sidebar">
-        <FriendsList/>
-        {hide && <FormAddFriend/>}
-        <Button handleClick = {handleFormAddFriend}> Add Friend</Button>
-        </div>
-        <FormSplitButton/>    
-        </div>
-    )
-}
+    function handleAddFriend(fri){
+        setFriend(frien => [...frien,fri])
+        setHide(false)
+    }
+    function handleSelectedFriends(frien){
+        setSelected(preValue =>preValue?.id === frien.id ? null : frien)
+        setHide(false)
+    }
+    
+    function handleShowAddFriend(value){
+        setFriend(friends => friend.map(friend => friend.id === selected.id ? {...friend,balance: friend.balance + value}:
+                                                                                                friend))
+        setSelected(null)
+    }
+        return(
+            <div className = "app">
+            <div className = "sidebar">
+            <FriendList friends = {friend} 
+                        onClickParentChild = {handleSelectedFriends}
+                        selectedFriends = {selected}
+            />
+            {hide && <FormAddFriend addingFriendFunction = {handleAddFriend}/>}
+            <Button handleClick = {handleFormAddFriend}> {hide ? `Close`:`Add Friend`}</Button>
+            </div>
+            { selected && <FormSplitButton friendData = {selected}
+                                           onSubmitValueChange = {handleShowAddFriend}
+            />}
+            </div>
+        )
+    }
 export default App
