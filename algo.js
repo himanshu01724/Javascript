@@ -712,6 +712,8 @@ const test = [1,3,6,8,2]
 const test2 = [2,3,-2,4]
 const test1 = [-2,1,-3,11,5,-9]
 const test3 = [1,2,-3,4]
+const test4 = [-10,2,8,-3,11,1]
+const test5 = [6,-10,-11,1,3]
 
 //Another Approach
 function MaximumProductSubarray(nums){
@@ -727,6 +729,7 @@ function MaximumProductSubarray(nums){
             let temp = MaxPro
             MaxPro = MinPro
             MinPro = temp
+            console.log(`temp val max and min===== ${temp},${MaxPro},${MinPro}`)
             
         }
         MaxPro = Math.max(nums[i],MaxPro*nums[i])
@@ -753,4 +756,8 @@ const MaxProSub = (nums) =>{
     return res
 }
 
-console.log(MaximumProductSubarray(test3))
+
+//31st January 2024
+
+
+console.log(MaximumProductSubarray(test5))
