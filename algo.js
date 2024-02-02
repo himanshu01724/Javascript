@@ -708,12 +708,12 @@ function maxSubArr(nums){
 
 //30th January 2024
 
-const test = [1,3,6,8,2]
-const test2 = [2,3,-2,4]
-const test1 = [-2,1,-3,11,5,-9]
-const test3 = [1,2,-3,4]
-const test4 = [-10,2,8,-3,11,1]
-const test5 = [6,-10,-11,1,3]
+// const test = [1,3,6,8,2]
+// const test2 = [2,3,-2,4]
+// const test1 = [-2,1,-3,11,5,-9]
+// const test3 = [1,2,-3,4]
+// const test4 = [-10,2,8,-3,11,1]
+// const test5 = [6,-10,-11,1,3]
 
 //Another Approach
 function MaximumProductSubarray(nums){
@@ -760,4 +760,70 @@ const MaxProSub = (nums) =>{
 //31st January 2024
 
 
-console.log(MaximumProductSubarray(test5))
+//console.log(MaximumProductSubarray(test5))
+
+
+//2nd febraury 2024
+
+const test = [23,4,6,8,9,1,85]
+const test2 = [2,-2,1,-3,3,10]
+
+
+function rotateMin(nums){
+    let pivot = nums[0]
+    for(i=1;i<nums.length;i++){
+        if (nums[i] < pivot)
+            pivot = nums[i]
+    }
+    return pivot
+}
+
+function containerMost(nums){
+    let l = 0;
+    let h = nums.length-1;
+    let res = 0
+    while(l<h){
+        let area = ((h-l) * Math.min(nums[l],nums[h]))
+        console.log(area)
+        res = Math.max(res,area)
+        if(nums[h]>nums[l]){
+            l+=1
+        }
+        else    
+            h-=1
+    }
+    return res;
+}
+
+
+function subSubMax(nums){
+    let currSum = 0
+    let maxSum = 0
+    for(i=1;i<nums.length;i++){
+        if (currSum<0)
+            currSum = 0
+        currSum +=nums[i]
+        console.log(currSum)
+    maxSum = Math.max(maxSum,currSum)
+
+    }
+    return maxSum
+}
+
+
+function maxSubProduct(nums){
+    let currMax = nums[0]
+    let currMin = nums[0]
+    let res = nums[0]
+    for(i=1;i<nums.length;i++){
+        if(nums[i]<0)
+            {let temp = currMax
+            currMax = currMin
+            currMin = temp}
+        currMax = Math.max(nums[i],currMax*nums[i])
+        currMin = Math.min(nums[i],currMin*nums[i])
+    res = Math.max(res,currMax)
+    }
+    return res;
+}
+console.log(maxSubProduct(test))
