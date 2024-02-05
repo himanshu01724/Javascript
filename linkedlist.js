@@ -98,97 +98,97 @@
 
 
 
-class Node{
-    constructor(data){
-        this.data = data;
-        this.next = null;
-    }
-}
+// class Node{
+//     constructor(data){
+//         this.data = data;
+//         this.next = null;
+//     }
+// }
 
-class LinkedList{
-    constructor(){
-        this.head = null;
-    }
-    append(data){
-        const first = new Node(data)
-        let p = this.head;
-        if(!p){
-            this.head = first
-            return
-        }
-        while(p.next !== null){
-            p = p.next;
-        }
-        p.next = first
-    }
+// class LinkedList{
+//     constructor(){
+//         this.head = null;
+//     }
+//     append(data){
+//         const first = new Node(data)
+//         let p = this.head;
+//         if(!p){
+//             this.head = first
+//             return
+//         }
+//         while(p.next !== null){
+//             p = p.next;
+//         }
+//         p.next = first
+//     }
 
-    countingNode(){
-        let p = this.head;
-        let res = 0
-        while (p !== null){
-            res+=1;
-            p = p.next;
-        }
-        return res
-    }
+//     countingNode(){
+//         let p = this.head;
+//         let res = 0
+//         while (p !== null){
+//             res+=1;
+//             p = p.next;
+//         }
+//         return res
+//     }
 
-    sumOfNodes(){
-        let p = this.head;
-        let res = 0;
-        while( p!== null){
-            res += p.data;
-            p = p.next;
-        }
-        return res;
-    }
+//     sumOfNodes(){
+//         let p = this.head;
+//         let res = 0;
+//         while( p!== null){
+//             res += p.data;
+//             p = p.next;
+//         }
+//         return res;
+//     }
     
-    maxNode(){
-        let p = this.head;
-        let max = p.data
-        while(p !== null){
-            if(p.data > max)
-                max = p.data
-            p = p.next;
-        }
-        return max
-    }
+//     maxNode(){
+//         let p = this.head;
+//         let max = p.data
+//         while(p !== null){
+//             if(p.data > max)
+//                 max = p.data
+//             p = p.next;
+//         }
+//         return max
+//     }
 
-    minNode(){
-        let p = this.head;
-        let min = p.data;
-        while(p !== null){
-            if (p.data < min)
-                min = p.data;
-        p=p.next;
-        }
-        return min
-    }
+//     minNode(){
+//         let p = this.head;
+//         let min = p.data;
+//         while(p !== null){
+//             if (p.data < min)
+//                 min = p.data;
+//         p=p.next;
+//         }
+//         return min
+//     }
 
 
 
-    display(){
-        let p = this.head;
-        while(p !== null){
-            console.log(p.data)
-            p = p.next;
-        }
-    }
+//     display(){
+//         let p = this.head;
+//         while(p !== null){
+//             console.log(p.data)
+//             p = p.next;
+//         }
+//     }
 
     
-}
-//defined variables
+// }
+// //defined variables
 
-const obj = new LinkedList()
+// const obj = new LinkedList()
 
-const list = [200,8,3,100,5]
-for(i=0;i<list.length;i++){
-    obj.append(list[i])
-}
-obj.display()
-console.log(`Elements === ${obj.countingNode()}`)
-console.log(`Sum === ${obj.sumOfNodes()}`)
-console.log(`Manimum Element === ${obj.minNode()}`)
-console.log(`Maximum Element === ${obj.maxNode()}`)
+// const list = [200,8,3,100,5]
+// for(i=0;i<list.length;i++){
+//     obj.append(list[i])
+// }
+// obj.display()
+// console.log(`Elements === ${obj.countingNode()}`)
+// console.log(`Sum === ${obj.sumOfNodes()}`)
+// console.log(`Manimum Element === ${obj.minNode()}`)
+// console.log(`Maximum Element === ${obj.maxNode()}`)
 
 
 // const a = new Node(200)
@@ -210,3 +210,46 @@ console.log(`Maximum Element === ${obj.maxNode()}`)
 
 
 
+//                                                          5 - January - 2024
+
+class Node{
+    constructor(data){
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList{
+    constructor(){
+        this.head = null;
+    }
+    append(data){
+        const first = new Node(data)
+        let p = this.head;
+        if(!p){
+            this.head = first
+            return
+        }
+        while(p.next !== null){
+            p = p.next
+        }
+        p.next = first;
+    }
+    display(){
+        let p = this.head;
+        while( p !== null){
+            console.log(p.data)
+            p = p.next;
+        }
+    }
+}
+
+
+
+const obj = new LinkedList()
+obj.append(10)
+obj.append(6)
+obj.append(90)
+obj.append(1)
+obj.append(7)
+obj.display()

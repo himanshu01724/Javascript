@@ -391,320 +391,320 @@
 
 //Problem Solutions
 
-function linear_search(num,element){
-    for(i =0;i<num.length;i++){
-        if(num[i] == element)
-            return i
-    }
-    return 0
-}
+// function linear_search(num,element){
+//     for(i =0;i<num.length;i++){
+//         if(num[i] == element)
+//             return i
+//     }
+//     return 0
+// }
 
-const binary_search=function(num, element){
-    let l = 0
-    let h = num.length -1
-    while (l <= h){
-        let mid = Math.round((l+h)/2)
-        //console.log(mid)
-        if (num[mid] === element){
-            return mid
-        }
-        else if(num[mid]<element){
-            l = mid+1
-        }
-        else{
-            h = mid-1
-        }
+// const binary_search=function(num, element){
+//     let l = 0
+//     let h = num.length -1
+//     while (l <= h){
+//         let mid = Math.round((l+h)/2)
+//         //console.log(mid)
+//         if (num[mid] === element){
+//             return mid
+//         }
+//         else if(num[mid]<element){
+//             l = mid+1
+//         }
+//         else{
+//             h = mid-1
+//         }
     
-    }
+//     }
     
-}
+// }
 
-function bubble_sort(nums){
-    let res = 0
-    for(i=0;i<nums.length-1;i++){
-        for(j=0;j<nums.length-1-i;j++){
-            if(nums[j+1]<nums[j]){
-                res = nums[j+1]
-                nums[j+1] = nums[j]
-                nums[j] = res
-            }
-        }
-    }
-    return nums
-}
+// function bubble_sort(nums){
+//     let res = 0
+//     for(i=0;i<nums.length-1;i++){
+//         for(j=0;j<nums.length-1-i;j++){
+//             if(nums[j+1]<nums[j]){
+//                 res = nums[j+1]
+//                 nums[j+1] = nums[j]
+//                 nums[j] = res
+//             }
+//         }
+//     }
+//     return nums
+// }
 
-function twoSum(num,element){
-    for(i=0;i<num.length-1;i++){
-        for(j=i+1;j<num.length;j++){
-            console.log(num[i],num[j])
-            if(num[i]+num[j] === element){
-                return [i,j]
-            }
-        }
-    }
-    return 0
-}
-
-
-
-//16 Jan 2024
-
-function stockProblem(nums){
-    let diff = 0
-    let lowest = nums[0]
-    for(i=0;i<nums.length;i++){
-        if(nums[i]<lowest)
-            lowest = nums[i]
-        diff = Math.max(diff,nums[i]-lowest)
-    }
-    return diff
-}
-
-
-function containsDupsFromSets(nums){
-    let newNums = new Set(nums)
-    if (newNums.length != nums.length){
-        return true
-    }
-    return false
-}
-
-function containDupsFromBruteForce(nums){
-    for(i=0;i<nums.length-1;i++){
-        for(j=0;j<nums.length-1;j++){
-            let check = nums[i] === nums[j]
-            if (check)
-                return true
-        }
-    }
-    return false
-}
-
-
-//18 Jan 2024
-
-function QuickSort(nums){
-    if (nums.length < 1){
-        return nums
-    }
-
-    const pivot = nums[0]
-    const left = []
-    const right = []
-
-    for(let i=1;i<nums.length;i++){
-        if (nums[i]<pivot){
-            left.push(nums[i])
-        }
-        else{
-            right.push(nums[i])
-        }
-    }
-    return [...QuickSort(left),pivot,...QuickSort(right)]
-}
-
-function productOfSelf(nums){
-    const res = []
-    let pre = 1
-    let post = 1
-    for(let i=0;i<nums.length;i++){
-        res[i] = pre
-        pre *= nums[i]
-    }
-    for(let j = nums.length-2;j>=0;j--){
-        post *= nums[j+1]
-        res[j] *= post
-    }
-
-    return res
-}
-
-//22-January-2024
+// function twoSum(num,element){
+//     for(i=0;i<num.length-1;i++){
+//         for(j=i+1;j<num.length;j++){
+//             console.log(num[i],num[j])
+//             if(num[i]+num[j] === element){
+//                 return [i,j]
+//             }
+//         }
+//     }
+//     return 0
+// }
 
 
 
-function problem(nums){
+// //16 Jan 2024
+
+// function stockProblem(nums){
+//     let diff = 0
+//     let lowest = nums[0]
+//     for(i=0;i<nums.length;i++){
+//         if(nums[i]<lowest)
+//             lowest = nums[i]
+//         diff = Math.max(diff,nums[i]-lowest)
+//     }
+//     return diff
+// }
 
 
-    for(i=0;i<nums.length;i++){
-        for(j=i+1;j<nums.length;j++){
-            const a = nums[i] === nums[j]
-            if(a)
-            return true
-        }
-    }
-    return false
-}
+// function containsDupsFromSets(nums){
+//     let newNums = new Set(nums)
+//     if (newNums.length != nums.length){
+//         return true
+//     }
+//     return false
+// }
 
-function problemx(nums){
-    let first = nums[0]
-    let res = 0
-    for(i=1;i<nums.length;i++){
-        if(nums[i]<first)
-        first=nums[i]
-    res = Math.max(res,nums[i]-first)
-    }
-    return res
-}
-
-function problemY(nums){
-    const res = []
-    let pre = 1
-    let post = 1
-    for(i=0;i<nums.length;i++){
-        res[i] = pre
-        pre *= nums[i]
-    }
-    for(let j=nums.length-2;j>=0;j--){
-        post *= nums[j+1]
-        res[j]*= post
-    }
-    return res
-}
-
-const twoSumTwo = (nums,target) =>{
-    let l = 0
-    let r = nums.length -1;
-    while(l<r){
-        const check = nums[l]+nums[r]
-        if (check === target){
-            return [l+1,r+1]
-        }
-        else if (check > target){
-            r-=1;
-        }
-        else{
-            l+=1
-        }
-    }
-    return 0
-}
+// function containDupsFromBruteForce(nums){
+//     for(i=0;i<nums.length-1;i++){
+//         for(j=0;j<nums.length-1;j++){
+//             let check = nums[i] === nums[j]
+//             if (check)
+//                 return true
+//         }
+//     }
+//     return false
+// }
 
 
+// //18 Jan 2024
 
-const threeSum = (nums) =>{
-    const res = []
-    nums.sort((a,b)=>a-b)
-    for(i=0;i<nums.length;i++){
-        const a = nums[i]
+// function QuickSort(nums){
+//     if (nums.length < 1){
+//         return nums
+//     }
+
+//     const pivot = nums[0]
+//     const left = []
+//     const right = []
+
+//     for(let i=1;i<nums.length;i++){
+//         if (nums[i]<pivot){
+//             left.push(nums[i])
+//         }
+//         else{
+//             right.push(nums[i])
+//         }
+//     }
+//     return [...QuickSort(left),pivot,...QuickSort(right)]
+// }
+
+// function productOfSelf(nums){
+//     const res = []
+//     let pre = 1
+//     let post = 1
+//     for(let i=0;i<nums.length;i++){
+//         res[i] = pre
+//         pre *= nums[i]
+//     }
+//     for(let j = nums.length-2;j>=0;j--){
+//         post *= nums[j+1]
+//         res[j] *= post
+//     }
+
+//     return res
+// }
+
+// //22-January-2024
+
+
+
+// function problem(nums){
+
+
+//     for(i=0;i<nums.length;i++){
+//         for(j=i+1;j<nums.length;j++){
+//             const a = nums[i] === nums[j]
+//             if(a)
+//             return true
+//         }
+//     }
+//     return false
+// }
+
+// function problemx(nums){
+//     let first = nums[0]
+//     let res = 0
+//     for(i=1;i<nums.length;i++){
+//         if(nums[i]<first)
+//         first=nums[i]
+//     res = Math.max(res,nums[i]-first)
+//     }
+//     return res
+// }
+
+// function problemY(nums){
+//     const res = []
+//     let pre = 1
+//     let post = 1
+//     for(i=0;i<nums.length;i++){
+//         res[i] = pre
+//         pre *= nums[i]
+//     }
+//     for(let j=nums.length-2;j>=0;j--){
+//         post *= nums[j+1]
+//         res[j]*= post
+//     }
+//     return res
+// }
+
+// const twoSumTwo = (nums,target) =>{
+//     let l = 0
+//     let r = nums.length -1;
+//     while(l<r){
+//         const check = nums[l]+nums[r]
+//         if (check === target){
+//             return [l+1,r+1]
+//         }
+//         else if (check > target){
+//             r-=1;
+//         }
+//         else{
+//             l+=1
+//         }
+//     }
+//     return 0
+// }
+
+
+
+// const threeSum = (nums) =>{
+//     const res = []
+//     nums.sort((a,b)=>a-b)
+//     for(i=0;i<nums.length;i++){
+//         const a = nums[i]
         
-        if(a > 0) break
-        if( i>0 && a === nums[i-1]) continue
+//         if(a > 0) break
+//         if( i>0 && a === nums[i-1]) continue
         
         
-        let l = i+1
-        let r = nums.length-1
+//         let l = i+1
+//         let r = nums.length-1
         
-        while(l<r){
-            const check = a + nums[l] + nums[r]
-            if(check > 0){
-                r-=1;
-            }
-            else if(check< 0){
-                l+=1;
-            }
-            else{
-                res.push([a,nums[l],nums[r]])
-                l+=1;
-                r-=1;
-                while(l<r && nums[l]<nums[l-1]){
-                    l++;
-                }
-            }
-        }
-    }
-    return res
-}
+//         while(l<r){
+//             const check = a + nums[l] + nums[r]
+//             if(check > 0){
+//                 r-=1;
+//             }
+//             else if(check< 0){
+//                 l+=1;
+//             }
+//             else{
+//                 res.push([a,nums[l],nums[r]])
+//                 l+=1;
+//                 r-=1;
+//                 while(l<r && nums[l]<nums[l-1]){
+//                     l++;
+//                 }
+//             }
+//         }
+//     }
+//     return res
+// }
 
-//25th January 2024
+// //25th January 2024
 
-const product = [1,8,6,2,5,4,8,3,7]
-const product2 = [1,0,-1,-1,-4,2]
-const product3 = [9,20,1,45,80,3]
-const product4 = [-1,2,-1,3,8,-4]
-
-
-//29th January 2024
+// const product = [1,8,6,2,5,4,8,3,7]
+// const product2 = [1,0,-1,-1,-4,2]
+// const product3 = [9,20,1,45,80,3]
+// const product4 = [-1,2,-1,3,8,-4]
 
 
-function quickSort(nums){
-    if(nums.length < 1){
-        return nums;
-    }
-
-    const par = nums[0]
-    const front = []
-    const end = []
-    for(let i = 1;i<nums.length;i++){
-        if(par > nums[i]){
-            front.push(nums[i])
-        }
-        else
-            end.push(nums[i])
-    }
-    return [...quickSort(front),par,...quickSort(end)]
-}
+// //29th January 2024
 
 
-const Sum3 = (nums) =>{
-    const res = []
-    nums.sort((a,b)=>a-b)
-    for(i=0;i<nums.length;i++){
-        const a = nums[i];
-        if(a > 0) break;
-        if(i > 0 && a === nums[i-1]) continue
-        l = i+1,r = nums.length-1;
-        while(l < r){
-            const check = a + nums[l] + nums[r];
-            if (check < 0){
-                l+=1
-            }
-            else if (check > 0)
-            { r-=1}
-            else{
-                res.push([a,nums[l],nums[r]])
-                l+=1;
-                r-=1;
-                while(l<r && nums[l]< nums[l-1]){  //this part is for checking dups in the solution
-                    l+=1;
-                }
-            }
-        }
-    }
-    return res;
+// function quickSort(nums){
+//     if(nums.length < 1){
+//         return nums;
+//     }
 
-}
+//     const par = nums[0]
+//     const front = []
+//     const end = []
+//     for(let i = 1;i<nums.length;i++){
+//         if(par > nums[i]){
+//             front.push(nums[i])
+//         }
+//         else
+//             end.push(nums[i])
+//     }
+//     return [...quickSort(front),par,...quickSort(end)]
+// }
 
 
-function mostWater(nums){
-    let res = 0
-    let l=0,r=nums.length-1;
-    while(l<r){
-        let area = (r-l) * Math.min(nums[l],nums[r])
-        res = Math.max(res,area)
-        if(nums[r]>nums[l]){
-            l+=1
-        }
-        else{
-            r-=1
-        }
-    }
-    return res
-}
+// const Sum3 = (nums) =>{
+//     const res = []
+//     nums.sort((a,b)=>a-b)
+//     for(i=0;i<nums.length;i++){
+//         const a = nums[i];
+//         if(a > 0) break;
+//         if(i > 0 && a === nums[i-1]) continue
+//         l = i+1,r = nums.length-1;
+//         while(l < r){
+//             const check = a + nums[l] + nums[r];
+//             if (check < 0){
+//                 l+=1
+//             }
+//             else if (check > 0)
+//             { r-=1}
+//             else{
+//                 res.push([a,nums[l],nums[r]])
+//                 l+=1;
+//                 r-=1;
+//                 while(l<r && nums[l]< nums[l-1]){  //this part is for checking dups in the solution
+//                     l+=1;
+//                 }
+//             }
+//         }
+//     }
+//     return res;
 
-function maxSubArr(nums){
-    let max = nums[0]
-    let curr = 0
-    for(i=0;i<nums.length;i++){
-        if(curr<0)
-            curr = 0
-        curr+=nums[i]
-        console.log(`Curr val = ${curr}`)
-        max = Math.max(max,curr)
-        console.log(`Curr val = ${max}`)
-    }
-    return max
-}
+// }
+
+
+// function mostWater(nums){
+//     let res = 0
+//     let l=0,r=nums.length-1;
+//     while(l<r){
+//         let area = (r-l) * Math.min(nums[l],nums[r])
+//         res = Math.max(res,area)
+//         if(nums[r]>nums[l]){
+//             l+=1
+//         }
+//         else{
+//             r-=1
+//         }
+//     }
+//     return res
+// }
+
+// function maxSubArr(nums){
+//     let max = nums[0]
+//     let curr = 0
+//     for(i=0;i<nums.length;i++){
+//         if(curr<0)
+//             curr = 0
+//         curr+=nums[i]
+//         console.log(`Curr val = ${curr}`)
+//         max = Math.max(max,curr)
+//         console.log(`Curr val = ${max}`)
+//     }
+//     return max
+// }
 
 //30th January 2024
 
@@ -716,114 +716,199 @@ function maxSubArr(nums){
 // const test5 = [6,-10,-11,1,3]
 
 //Another Approach
-function MaximumProductSubarray(nums){
-    if (nums.length<=1){
-        return nums.length === 0 ? 0: nums[0];
-    }
-    let MinPro = nums[0]
-    let MaxPro = nums[0]
-    let result = nums[0]
-    for(i=1;i<nums.length;i++){
-        console.log(`i = ${nums[i]}`)
-        if(nums[i]<0){
-            let temp = MaxPro
-            MaxPro = MinPro
-            MinPro = temp
-            console.log(`temp val max and min===== ${temp},${MaxPro},${MinPro}`)
-            
-        }
-        MaxPro = Math.max(nums[i],MaxPro*nums[i])
-        MinPro = Math.min(nums[i],nums[i]*MinPro)
-        console.log(`Max pro && Min pro = ${MaxPro}, ${MinPro}`)
 
-    result = Math.max(result,MaxPro)
-    console.log(`result = ${result}`)
+// function MaximumProductSubarray(nums){
+//     if (nums.length<=1){
+//         return nums.length === 0 ? 0: nums[0];
+//     }
+//     let MinPro = nums[0]
+//     let MaxPro = nums[0]
+//     let result = nums[0]
+//     for(i=1;i<nums.length;i++){
+//         console.log(`i = ${nums[i]}`)
+//         if(nums[i]<0){
+//             let temp = MaxPro
+//             MaxPro = MinPro
+//             MinPro = temp
+//             console.log(`temp val max and min===== ${temp},${MaxPro},${MinPro}`)
+            
+//         }
+//         MaxPro = Math.max(nums[i],MaxPro*nums[i])
+//         MinPro = Math.min(nums[i],nums[i]*MinPro)
+//         console.log(`Max pro && Min pro = ${MaxPro}, ${MinPro}`)
+
+//     result = Math.max(result,MaxPro)
+//     console.log(`result = ${result}`)
+//     }
+// return result
+// }
+
+// const MaxProSub = (nums) =>{
+//     let res = nums[0]
+//     let currMax = 1, currMin = 1
+//     for(i=1;i<nums.length;i++){
+//         if (nums[i] === 0)
+//             currMax = 1,currMin=1
+//         currMax = Math.max(i*currMax,i*currMin,nums[i])
+//         currMin = Math.min(i*currMax,i*currMin,nums[i])
+
+//     res = Math.max(res,currMax)
+//     }
+//     return res
+// }
+
+
+// //31st January 2024
+
+
+// //console.log(MaximumProductSubarray(test5))
+
+
+// //2nd febraury 2024
+
+// const test = [23,4,6,8,9,1,85]
+// const test2 = [2,-2,1,-3,3,10]
+
+
+// function rotateMin(nums){
+//     let pivot = nums[0]
+//     for(i=1;i<nums.length;i++){
+//         if (nums[i] < pivot)
+//             pivot = nums[i]
+//     }
+//     return pivot
+// }
+
+// function containerMost(nums){
+//     let l = 0;
+//     let h = nums.length-1;
+//     let res = 0
+//     while(l<h){
+//         let area = ((h-l) * Math.min(nums[l],nums[h]))
+//         console.log(area)
+//         res = Math.max(res,area)
+//         if(nums[h]>nums[l]){
+//             l+=1
+//         }
+//         else    
+//             h-=1
+//     }
+//     return res;
+// }
+
+
+// function subSubMax(nums){
+//     let currSum = 0
+//     let maxSum = 0
+//     for(i=1;i<nums.length;i++){
+//         if (currSum<0)
+//             currSum = 0
+//         currSum +=nums[i]
+//         console.log(currSum)
+//     maxSum = Math.max(maxSum,currSum)
+
+//     }
+//     return maxSum
+// }
+
+
+// function maxSubProduct(nums){
+//     let currMax = nums[0]
+//     let currMin = nums[0]
+//     let res = nums[0]
+//     for(i=1;i<nums.length;i++){
+//         if(nums[i]<0)
+//             {let temp = currMax
+//             currMax = currMin
+//             currMin = temp}
+//         currMax = Math.max(nums[i],currMax*nums[i])
+//         currMin = Math.min(nums[i],currMin*nums[i])
+//     res = Math.max(res,currMax)
+//     }
+//     return res;
+// }
+// console.log(maxSubProduct(test))
+
+const test = [10,6,90,1,7]
+const test1 = [-1,0,1,2,-1,-4]
+
+const algo1 = (nums,target)=>{
+    let l = 0, h = nums.length-1;
+    while(l<=h){
+        let mid = Math.floor((l+h)/2);
+        if(nums[mid] === target){
+            return mid
+        }
+        else if(nums[mid] > target){
+            h = mid-1;
+        }
+        else{
+            l = mid+1
+        }
     }
-return result
+    return 0
 }
 
-const MaxProSub = (nums) =>{
-    let res = nums[0]
-    let currMax = 1, currMin = 1
-    for(i=1;i<nums.length;i++){
-        if (nums[i] === 0)
-            currMax = 1,currMin=1
-        currMax = Math.max(i*currMax,i*currMin,nums[i])
-        currMin = Math.min(i*currMax,i*currMin,nums[i])
+const algo2 = (nums) =>{
+    for(i=0;i<nums.length-1;i++){
+        for(j=0;j<nums.length-1-i;j++){
+            if(nums[j+1]<nums[j]){
+                let temp = nums[j+1]
+                nums[j+1]= nums[j]
+                nums[j] = temp
+            }
+        }
+    }
+    return nums
+}
 
-    res = Math.max(res,currMax)
+const algo3 = (nums) =>{
+    if(nums.length<=1){
+        return nums
+    }
+    const start = []
+    const end = []
+    const pivot = nums[0]
+    for(i=1;i<nums.length;i++){
+        if (nums[i]<pivot){
+            start.push(nums[i])
+        } else{
+        end.push(nums[i])
+        }
+    }
+    return [...algo3(start), pivot, ...algo3(end)]
+}
+
+const prob1 = (nums) =>{
+    nums.sort((a,b)=>a-b)
+    let res = []
+    for(i=0;i<nums.length-1;i++){
+        const pivot = nums[i]
+        if(pivot>0) break;
+        if(i>0 && pivot === nums[i-1]) continue;
+
+        let l = i+1, h = nums.length-1;
+
+        while(l < h){
+            const check = pivot + nums[l] + nums[h]
+            if(check > 0 ){
+                h-=1;
+            }
+            else if(check < 0){
+                l+=1;
+            }
+            else{
+                res.push([pivot,nums[l],nums[h]])
+                l+=1;
+                h-=1;
+                while(l < h && nums[l] < nums[l-1]){
+                    l+=1;
+                }
+            }
+        }
+
     }
     return res
 }
 
-
-//31st January 2024
-
-
-//console.log(MaximumProductSubarray(test5))
-
-
-//2nd febraury 2024
-
-const test = [23,4,6,8,9,1,85]
-const test2 = [2,-2,1,-3,3,10]
-
-
-function rotateMin(nums){
-    let pivot = nums[0]
-    for(i=1;i<nums.length;i++){
-        if (nums[i] < pivot)
-            pivot = nums[i]
-    }
-    return pivot
-}
-
-function containerMost(nums){
-    let l = 0;
-    let h = nums.length-1;
-    let res = 0
-    while(l<h){
-        let area = ((h-l) * Math.min(nums[l],nums[h]))
-        console.log(area)
-        res = Math.max(res,area)
-        if(nums[h]>nums[l]){
-            l+=1
-        }
-        else    
-            h-=1
-    }
-    return res;
-}
-
-
-function subSubMax(nums){
-    let currSum = 0
-    let maxSum = 0
-    for(i=1;i<nums.length;i++){
-        if (currSum<0)
-            currSum = 0
-        currSum +=nums[i]
-        console.log(currSum)
-    maxSum = Math.max(maxSum,currSum)
-
-    }
-    return maxSum
-}
-
-
-function maxSubProduct(nums){
-    let currMax = nums[0]
-    let currMin = nums[0]
-    let res = nums[0]
-    for(i=1;i<nums.length;i++){
-        if(nums[i]<0)
-            {let temp = currMax
-            currMax = currMin
-            currMin = temp}
-        currMax = Math.max(nums[i],currMax*nums[i])
-        currMin = Math.min(nums[i],currMin*nums[i])
-    res = Math.max(res,currMax)
-    }
-    return res;
-}
-console.log(maxSubProduct(test))
+console.log(prob1(test1))
