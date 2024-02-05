@@ -73,10 +73,6 @@ function handleSetMainState(value){
 }
 
 function handlingIndividualComponent(testId){
-    // console.log(testId)
-    // const testing = data.some(prevData => prevData.id === testId)
-    // console.log(testing)
-    // setCheckSelect(1)
     setData(prevData => prevData.map((item)=>{
         if(item.id === testId){
             return{...item,checked: !item.checked}
