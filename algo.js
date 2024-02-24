@@ -829,86 +829,117 @@
 // }
 // console.log(maxSubProduct(test))
 
-const test = [10,6,90,1,7]
-const test1 = [-1,0,1,2,-1,-4]
+// const test = [10,6,90,1,7]
+// const test1 = [-1,0,1,2,-1,-4]
 
-const algo1 = (nums,target)=>{
-    let l = 0, h = nums.length-1;
-    while(l<=h){
-        let mid = Math.floor((l+h)/2);
-        if(nums[mid] === target){
-            return mid
-        }
-        else if(nums[mid] > target){
-            h = mid-1;
-        }
-        else{
-            l = mid+1
-        }
-    }
-    return 0
-}
+// const algo1 = (nums,target)=>{
+//     let l = 0, h = nums.length-1;
+//     while(l<=h){
+//         let mid = Math.floor((l+h)/2);
+//         if(nums[mid] === target){
+//             return mid
+//         }
+//         else if(nums[mid] > target){
+//             h = mid-1;
+//         }
+//         else{
+//             l = mid+1
+//         }
+//     }
+//     return 0
+// }
 
-const algo2 = (nums) =>{
-    for(i=0;i<nums.length-1;i++){
-        for(j=0;j<nums.length-1-i;j++){
-            if(nums[j+1]<nums[j]){
-                let temp = nums[j+1]
-                nums[j+1]= nums[j]
-                nums[j] = temp
-            }
-        }
-    }
-    return nums
-}
+// const algo2 = (nums) =>{
+//     for(i=0;i<nums.length-1;i++){
+//         for(j=0;j<nums.length-1-i;j++){
+//             if(nums[j+1]<nums[j]){
+//                 let temp = nums[j+1]
+//                 nums[j+1]= nums[j]
+//                 nums[j] = temp
+//             }
+//         }
+//     }
+//     return nums
+// }
 
-const algo3 = (nums) =>{
-    if(nums.length<=1){
-        return nums
-    }
-    const start = []
-    const end = []
-    const pivot = nums[0]
-    for(i=1;i<nums.length;i++){
-        if (nums[i]<pivot){
-            start.push(nums[i])
-        } else{
-        end.push(nums[i])
-        }
-    }
-    return [...algo3(start), pivot, ...algo3(end)]
-}
+// const algo3 = (nums) =>{
+//     if(nums.length<=1){
+//         return nums
+//     }
+//     const start = []
+//     const end = []
+//     const pivot = nums[0]
+//     for(i=1;i<nums.length;i++){
+//         if (nums[i]<pivot){
+//             start.push(nums[i])
+//         } else{
+//         end.push(nums[i])
+//         }
+//     }
+//     return [...algo3(start), pivot, ...algo3(end)]
+// }
 
-const prob1 = (nums) =>{
-    nums.sort((a,b)=>a-b)
-    let res = []
-    for(i=0;i<nums.length-1;i++){
-        const pivot = nums[i]
-        if(pivot>0) break;
-        if(i>0 && pivot === nums[i-1]) continue;
+// const prob1 = (nums) =>{
+//     nums.sort((a,b)=>a-b)
+//     let res = []
+//     for(i=0;i<nums.length-1;i++){
+//         const pivot = nums[i]
+//         if(pivot>0) break;
+//         if(i>0 && pivot === nums[i-1]) continue;
 
-        let l = i+1, h = nums.length-1;
+//         let l = i+1, h = nums.length-1;
 
-        while(l < h){
-            const check = pivot + nums[l] + nums[h]
-            if(check > 0 ){
-                h-=1;
-            }
-            else if(check < 0){
-                l+=1;
-            }
-            else{
-                res.push([pivot,nums[l],nums[h]])
-                l+=1;
-                h-=1;
-                while(l < h && nums[l] < nums[l-1]){
-                    l+=1;
-                }
-            }
-        }
+//         while(l < h){
+//             const check = pivot + nums[l] + nums[h]
+//             if(check > 0 ){
+//                 h-=1;
+//             }
+//             else if(check < 0){
+//                 l+=1;
+//             }
+//             else{
+//                 res.push([pivot,nums[l],nums[h]])
+//                 l+=1;
+//                 h-=1;
+//                 while(l < h && nums[l] < nums[l-1]){
+//                     l+=1;
+//                 }
+//             }
+//         }
 
-    }
-    return res
-}
+//     }
+//     return res
+// }
 
-console.log(prob1(test1))
+// console.log(prob1(test1))
+
+
+
+const tempMovieData = [
+    {
+      imdbID: "tt1375666",
+      Title: "Inception",
+      Year: "2010",
+      Poster:
+        "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+    },
+    {
+      imdbID: "tt0133093",
+      Title: "The Matrix",
+      Year: "1999",
+      Poster:
+        "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
+    },
+    {
+      imdbID: "tt6751668",
+      Title: "Parasite",
+      Year: "2019",
+      Poster:
+        "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg",
+    },
+  ];
+
+// console.log(tempMovieData)
+
+test = tempMovieData.find((id)=> id.imdbID === "tt6751668")
+console.log(test)
