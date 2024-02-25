@@ -1,0 +1,10 @@
+.cc{
+    display: flex;
+}
+
+
+
+.cc input[type="number"]:focus{
+    outline: 2px solid yellow;
+    border: 0px;
+}
