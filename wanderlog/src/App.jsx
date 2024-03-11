@@ -51,12 +51,12 @@ export default function App(){
             <Route path = "price" element = {<Pricing/>}/>
             <Route path = "/login" element = {<Login/>}/>
             <Route path = "app" element = {<AppLayout/>}>
-                <Route index element = {<Navigate to = 'cities'/>}/>
+                    <Route index element = {<Navigate to = 'cities'/>}/>
                     <Route path = "cities" element = {<CityList city = {city} isLoading = {isLoading} handleRemove = {handleRemove}/>}/>
                     <Route path = "cities/:id" element = {<City city = {city}/>}/>
                     <Route path = "countries" element = {<CountryList city = {city} isLoading = {isLoading}/>}/>
                     <Route path = "form" element = {<Form/>}/>
-                </Route>
+            </Route>
             <Route path = "*" element = {<PageNotFound/>}/>
         </Routes>
         </BrowserRouter>
