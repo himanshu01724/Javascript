@@ -2,7 +2,9 @@ import { useProvider } from '../context/CityContextProvider';
 import styles from './CityItem.module.css'
 import {Link} from 'react-router-dom'
 
-export default function CityItem({cityData, handleRemove}) {
+export default function CityItem({cityData}) {
+
+    
 
     const formatDate = (date) =>
     new Intl.DateTimeFormat("en", {
@@ -12,10 +14,15 @@ export default function CityItem({cityData, handleRemove}) {
       weekday: "long",
     }).format(new Date(date));
 
-console.log(cityData)
 
-const {currentCity} = useProvider()
+
+const {currentCity, handleRemoveCity} = useProvider()
 const {emoji, cityName, country, date, id, position} = cityData;
+
+function handleDelete(e){
+  e.preventDefault();
+  handleRemoveCity(id)
+}
 
 console.log(position)
   return (<>
@@ -25,7 +32,7 @@ console.log(position)
         <h3 className = {styles.name}>{cityName}</h3>
         <time className = {styles.date}>{formatDate(date)}</time>
         <button className = {styles.deleteBtn} 
-                onClick={()=>handleRemove(id)}
+                onClick={handleDelete}
         >x</button>
         </Link>
     </li>

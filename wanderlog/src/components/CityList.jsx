@@ -6,20 +6,20 @@ import { useProvider } from '../context/CityContextProvider'
 
 export default function CityList() {
 
-  const {city, isLoading, handleRemove } = useProvider()
+  const {city, isLoading } = useProvider()
 
 
   console.log(city)
   
 if(isLoading) return <Spinner/> 
 
-if(city.cities.length<1) return <Message message = {"Add you first city by clicking a city on the map"}/>
+if(city.length<1) return <Message message = {"Add you first city by clicking a city on the map"}/>
 
   return (
     <>
     <ul className = {styles.cityList}>
-    {city?.cities.map((item,i)=>(
-         <CityItem cityData = {item} key={item.id} handleRemove = {handleRemove}/>
+    {city.map((item,i)=>(
+         <CityItem cityData = {item} key={i} />
     ))}
     </ul>
     </>

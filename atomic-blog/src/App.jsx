@@ -1,6 +1,7 @@
 import {faker} from "@faker-js/faker"
 import { useEffect } from "react";
 import { useState } from "react";
+import {PostProvider, useProvider} from "./PostProvider";
 
 function createRandomPost() {
     return {
@@ -9,58 +10,41 @@ function createRandomPost() {
     };
   }
 
+
+
+
 export default function App(){
 
-    const [posts, setPosts] = useState(() => Array.from({length:30}, () => createRandomPost()))
-    const [searchQuery, setSearchQuery] = useState("");
     const [isFakeDark, setIsFakeDark] = useState(false);
-
+    
     useEffect(()=>{
         document.documentElement.classList.toggle("fake-dark-mode");
     },[isFakeDark])
-
-    const controlledSearchElement = searchQuery.length > 0 
-                                    ? posts.filter((item)=>`${item.title} ${item.body}`.toLowerCase().includes(searchQuery.toLowerCase()))
-                                    : posts;
     
-    function handleFormData(value){
-        console.log(value)
-        setPosts((posts)=>[...posts, value])
-    }
-
-    function clearPosts(){
-        setSearchQuery('')
-    }
-  
     return(
+        <PostProvider>
         <section>
             <button onClick={() => setIsFakeDark(!isFakeDark)} className = "btn-fake-dark-mode">
                 {isFakeDark ? "🌙" : "🔆"}
             </button>
-            <Header posts = {controlledSearchElement}
-                    searchQuery = {searchQuery}
-                    setSearchQuery = {setSearchQuery}
-                    clearPosts = {clearPosts}
-                    />
-
-            <Main   posts = {controlledSearchElement}
-                    handleFormData = {handleFormData}/>
-
-            <Archive handleFormData = {handleFormData}/>
+            <Header/>
+            <Main/>
+            <Archive/>
         </section>
+        </PostProvider>
     )
 }
 
-function Header({posts, searchQuery, setSearchQuery, clearPosts}){
+function Header(){
+    const {clearPosts} = useProvider()
     return(
         <header>
             <h1>
                 <span></span> The Atomic Blog
             </h1>
             <div>
-            <Results posts = {posts}/>
-            <SearchPosts searchQuery = {searchQuery}
-                         setSearchQuery = {setSearchQuery}/>
+            <Results />
+            <SearchPosts/>
             <button onClick={clearPosts}>Clear Posts</button>
             </div>
         </header>
@@ -68,7 +52,9 @@ function Header({posts, searchQuery, setSearchQuery, clearPosts}){
     )
 }
 
-function SearchPosts({searchQuery, setSearchQuery}){
+function SearchPosts(){
+    const {searchQuery, setSearchQuery} = useProvider()
+
     return(
         <input type = 'text' 
                value = {searchQuery}
@@ -79,23 +65,25 @@ function SearchPosts({searchQuery, setSearchQuery}){
     )
 }
 
-function Results({posts}){
+function Results(){
+    const {posts} = useProvider()
     return(
         <p>🚀 {posts.length} Results found</p>
     )
 }
 
-function Main({ posts, handleFormData}) {
+function Main() {
     return (
       <main>
-        <FormAddPost handleFormData = {handleFormData}/>
-        <Posts posts = {posts}
-               />
+        <FormAddPost/>
+        <Posts/>
       </main>
     );
 }
 
-function FormAddPost({handleFormData}){
+function FormAddPost(){
+
+const {handleFormData} = useProvider()
 
 const [title, setTitle] = useState('')
 const [body, setBody] = useState('')
@@ -117,15 +105,17 @@ function handleFormSubmit(e){
     )
 }
 
-function Posts({posts}){
+function Posts(){
     return(
         <section>
-            <List posts = {posts}/>
+            <List/>
         </section>
     )
 }
 
-function List({posts}){
+function List(){
+const {posts} = useProvider()
+
 const [test,setTest] = useState(null)
 
 function handleModelState(item){
@@ -164,7 +154,8 @@ function Model({post, setTest}){
 
 
 
-function Archive({handleFormData}){
+function Archive(){
+    const {handleFormData} = useProvider()
     const posts = Array.from({length:1000}, () => createRandomPost())
     
     const [show, setShow] = useState(false)
