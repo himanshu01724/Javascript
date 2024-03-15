@@ -2,8 +2,11 @@ import styles from './CountryList.module.css'
 import Spinner from './Spinner'
 import CountryItem from './CountryItem'
 import Message from './Message'
+import { useProvider } from '../context/CityContextProvider'
 
-export default function CountryList({city, isLoading, handleRemove}) {
+export default function CountryList() {
+
+const {city, isLoading, handleRemove} = useProvider()
   
 if(isLoading) return <Spinner/> 
 

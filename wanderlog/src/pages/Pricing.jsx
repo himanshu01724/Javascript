@@ -11,12 +11,12 @@ export default function Product() {
           <h2>
             Simple pricing.
             <br />
-            Just $9/month.
+            Just 0.2$/month.
           </h2>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae vel
-            labore mollitia iusto. Recusandae quos provident, laboriosam fugit
-            voluptatem iste.
+          Ready to embark on your next adventure? 
+          Contact us to track all your dream vacation and take advantage of our unbeatable pricing plans. 
+          Our team of travel experts is here to help you plan the perfect getaway tailored to your preferences and budget.
           </p>
         </div>
         <img src="img-2.jpg" alt="overview of a large city with skyscrapers" />

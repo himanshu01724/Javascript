@@ -11,17 +11,14 @@ export default function Product() {
           alt="person with dog overlooking mountain with sunset"
         />
         <div>
-          <h2>About WorldWide.</h2>
+          <h2>About WanderBlog.</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo est
-            dicta illum vero culpa cum quaerat architecto sapiente eius non
-            soluta, molestiae nihil laborum, placeat debitis, laboriosam at fuga
-            perspiciatis?
+            WanderBlog is a place where you can track the number of places you have visited across the world.
           </p>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis
-            doloribus libero sunt expedita ratione iusto, magni, id sapiente
-            sequi officiis et.
+            Just like google maps it gives you flexibility to pin a location get it's cordinates and it will be added
+            to your list, you can you further drill down to cities and countries check when was the time you visited those places
+            Add your notes, learn more about that place
           </p>
         </div>
       </section>

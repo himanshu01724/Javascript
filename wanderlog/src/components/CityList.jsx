@@ -2,9 +2,14 @@ import styles from './CityList.module.css'
 import Spinner from './Spinner'
 import CityItem from './CityItem'
 import Message from './Message'
+import { useProvider } from '../context/CityContextProvider'
 
-export default function CityList({city, isLoading, handleRemove}) {
-    console.log(city)
+export default function CityList() {
+
+  const {city, isLoading, handleRemove } = useProvider()
+
+
+  console.log(city)
   
 if(isLoading) return <Spinner/> 
 

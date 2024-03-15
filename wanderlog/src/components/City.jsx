@@ -1,5 +1,8 @@
 import styles from "./City.module.css";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, useNavigate } from "react-router-dom";
+import { useProvider } from "../context/CityContextProvider";
+import Button from "./Button";
+import { useEffect } from "react";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -11,28 +14,26 @@ const formatDate = (date) =>
 
 
 
-function City({city}) {
+function City() {
 
 const {id} = useParams()
-
+const navigate = useNavigate()
 const [searchParam, setSearchParam] = useSearchParams()
 const lat = searchParam.get('lat')
 const lng = searchParam.get('lng')
 
 
-const currCity = city?.cities.reduce((acc, item)=>{
-  return item.id == id ? item : acc;
-}, null)
+const {getCity, currentCity} = useProvider()
 
+useEffect(()=>{
+  getCity(id)
+}, [id])
 
-
-  const { cityName, emoji, date, notes } = currCity;
-
+const { cityName, emoji, date, notes } = currentCity;        //here I have to destructure the currCity object... 
   
   return (
     <div className={styles.city}>
       <div className={styles.row}>
-        <h1>{lng}{lat}</h1>
         <h6>City name</h6>
         <h3>
           <span>{emoji}</span> {cityName}
@@ -61,10 +62,9 @@ const currCity = city?.cities.reduce((acc, item)=>{
           Check out {cityName} on Wikipedia &rarr;
         </a>
       </div>
-
-      {/* <div>
-        <ButtonBack />
-      </div> */}
+      <div>
+        <Button type = "back" onClick = {()=>navigate(-1)}>&larr;Back</Button>
+        </div>
     </div>
   );
 }
