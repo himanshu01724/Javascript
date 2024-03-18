@@ -73,15 +73,39 @@
       "id": "11009922"
     },
     {
-      "id": "f9da",
-      "cityName": "Chikmagalur",
+      "id": "56a0",
+      "cityName": "Bengaluru",
       "country": "India",
-      "date": "2024-03-15T20:55:54.983Z",
-      "notes": "It was a nice place to visit",
+      "date": "2024-03-18T14:14:26.678Z",
+      "notes": "Bengaluru is a hot place where no water is present",
       "emoji": "🇮🇳",
       "position": {
-        "lat": "13.304102866767089",
-        "lng": "75.77819824218751"
+        "lat": "12.92961458098724",
+        "lng": "77.60742187500001"
+      }
+    },
+    {
+      "id": "146c",
+      "cityName": "Moradabad",
+      "country": "India",
+      "date": "2024-03-18T14:31:44.852Z",
+      "notes": "Moradabad is a good place",
+      "emoji": "🇮🇳",
+      "position": {
+        "lat": "28.777289039997623",
+        "lng": "78.804931640625"
+      }
+    },
+    {
+      "id": "ce4b",
+      "cityName": "Rewari",
+      "country": "India",
+      "date": "2024-03-18T19:36:36.953Z",
+      "notes": "Rewari is the place where my friend lives",
+      "emoji": "🇮🇳",
+      "position": {
+        "lat": "28.13012773787403",
+        "lng": "76.60766601562501"
       }
     }
   ]

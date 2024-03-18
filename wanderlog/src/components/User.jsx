@@ -1,16 +1,29 @@
+import { useEffect } from "react";
+import { useAuthContext } from "../context/FakeAuthContext";
 import styles from "./User.module.css";
+import { useNavigate } from "react-router-dom";
 
 const FAKE_USER = {
-  name: "Jack",
-  email: "jack@example.com",
+  name: "Himanshu",
+  email: "himanshujoshi2412@gmail.com",
   password: "qwerty",
   avatar: "https://i.pravatar.cc/100?u=zz",
 };
 
 function User() {
+  const { logout, isAuthenticated } = useAuthContext();
+  const navigate = useNavigate();
+
   const user = FAKE_USER;
 
-  function handleClick() {}
+  function handleClick() {
+    console.log("click");
+    logout();
+  }
+
+  useEffect(() => {
+    if (!isAuthenticated) navigate("/");
+  }, [isAuthenticated]);
 
   return (
     <div className={styles.user}>

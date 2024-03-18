@@ -1,108 +1,138 @@
-import { useContext } from "react";
-import { createContext, useState, useEffect} from "react";
+import { useContext, useReducer } from "react";
+import { createContext, useState, useEffect } from "react";
 
-const CityData = createContext()
+const CityData = createContext();
 
-function CityContextProvider({children})
-{
+const initialState = { city: [], isLoading: false, currentCity: {}, error: "" };
 
-    const [city, setCity] = useState([]);
-    const [isLoading, setIsloading] = useState(false);
-    const [currentCity, setCurrentCity] = useState({});
+function reducer(state, action) {
+  switch (action.type) {
+    case "loader":
+      return { ...state, isLoading: true };
 
-    useEffect(()=>{
-        fetchingData()
-    },[])
+    case "cities/loading":
+      return { ...state, isLoading: false, city: action.payload };
 
-    //fetch request
-    async function fetchingData(){
-        try{
-            setIsloading(true)
-            const response = await fetch(`http://localhost:8000/cities`)
-            if(!response.ok){
-                throw new Error('Error in network connection')
-            }
-            const data = await response.json()
-            setCity(data)
-            setIsloading(false)
-        }
-        catch(error){
-            console.error('Error in fetching data',error)
-        }
-    }
+    case "cities/loaded":
+      return { ...state, currentCity: action.payload };
 
-    //For matching id of the city...
-    function getCity(id){
-    const currCity = city.reduce((acc, item)=>{
-        return item.id == id ? item : acc;
-      }, null)
-    
-      setCurrentCity(currCity);
-    }
+    case "cities/created":
+      return {
+        ...state,
+        city: [...state.city, action.payload],
+        isLoading: false,
+      };
+    case "cities/deleted":
+      return {
+        ...state,
+        city: state.city.filter((val) => val.id !== action.payload),
+        isLoading: false,
+      };
 
+    case "rejected":
+      return { ...state, error: action.payload, isLoading: false };
 
-    async function addNewCity(newCity){
-        try{
-            setIsloading(true)
-            const res = await fetch(`http://localhost:8000/cities`,{
-                    method:'POST',
-                    body:JSON.stringify(newCity),
-                    headers:{
-                        "Content-Type":"application/json"
-                    },
-                })
-            if(!res.ok){
-                throw new Error(`Network error`)
-            }
-            const data = await res.json()
-            console.log(data)
-            setCity((item)=>[...item, newCity])
-            setIsloading(false)
-            }
-            
-        catch(err){
-            console.error(err)
-        }
-        }
-
-    async function handleRemoveCity(id){
-        try{
-            const response = await fetch(`http://localhost:8000/cities/${id}`,{
-                method:'DELETE',
-                headers:{
-                    "Content-Type":"application/json"
-                }
-            })
-            if(!response.ok){
-                throw new Error(`Error in reaching to API`)
-            }
-            const data = await response.json()
-            setCity((item)=>item.filter((val)=>val.id !== id))
-            
-        }
-        catch(err){
-            console.error(err)
-        }
-    }
-    
-
-    return(
-        <CityData.Provider 
-            value = {{city, 
-                       isLoading,
-                       getCity,
-                       currentCity,
-                       addNewCity,
-                       handleRemoveCity
-                       }}
-        >{children}
-        </CityData.Provider>
-    )
+    default:
+      throw new Error("Unknown action");
+  }
 }
 
-function useProvider(){
-    const context = useContext(CityData);
-    return context;
+function CityContextProvider({ children }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { city, isLoading, currentCity } = state;
+
+  useEffect(() => {
+    fetchingData();
+  }, []);
+
+  //fetch request
+
+  async function fetchingData() {
+    dispatch({ type: "loader" });
+    try {
+      const response = await fetch(`http://localhost:8000/cities`);
+      if (!response.ok) {
+        throw new Error("Error in network connection");
+      }
+      const data = await response.json();
+      dispatch({ type: "cities/loading", payload: data });
+    } catch (error) {
+      dispatch({
+        type: "rejected",
+        payload: "There was a problem in loading data",
+      });
+    }
+  }
+
+  //For matching id of the city...
+  function getCity(id) {
+    const currCity = city.reduce((acc, item) => {
+      return item.id == id ? item : acc;
+    }, null);
+
+    dispatch({ type: "cities/loaded", payload: currCity });
+  }
+
+  async function addNewCity(newCity) {
+    dispatch({ type: "loader" });
+    try {
+      const res = await fetch(`http://localhost:8000/cities`, {
+        method: "POST",
+        body: JSON.stringify(newCity),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!res.ok) {
+        throw new Error(`Network error`);
+      }
+      const data = await res.json();
+      dispatch({ type: "cities/created", payload: newCity });
+    } catch (err) {
+      dispatch({
+        type: "rejected",
+        payload: "There was a problem in loading data",
+      });
+    }
+  }
+
+  async function handleRemoveCity(id) {
+    try {
+      const response = await fetch(`http://localhost:8000/cities/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`Error in reaching to API`);
+      }
+      const data = await response.json();
+      dispatch({ type: "cities/deleted", payload: id });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  return (
+    <CityData.Provider
+      value={{
+        city,
+        isLoading,
+        getCity,
+        currentCity,
+        addNewCity,
+        handleRemoveCity,
+      }}
+    >
+      {children}
+    </CityData.Provider>
+  );
 }
 
-export {CityContextProvider, useProvider};
+function useProvider() {
+  const context = useContext(CityData);
+  return context;
+}
+
+export { CityContextProvider, useProvider };
