@@ -85,8 +85,9 @@ function Form() {
       notes,
       emoji,
       position: { lat, lng },
+      id: String(Math.floor(Math.random(1) * 10000)),
     };
-    console.log(newCity);
+    console.log(`New City == ${newCity}`);
     await addNewCity(newCity);
     navigate("/app/cities");
   }

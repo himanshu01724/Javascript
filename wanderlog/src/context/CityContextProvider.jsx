@@ -14,7 +14,7 @@ function reducer(state, action) {
       return { ...state, isLoading: false, city: action.payload };
 
     case "cities/loaded":
-      return { ...state, currentCity: action.payload };
+      return { ...state, currentCity: action.payload, isLoading: false };
 
     case "cities/created":
       return {
@@ -50,7 +50,7 @@ function CityContextProvider({ children }) {
   async function fetchingData() {
     dispatch({ type: "loader" });
     try {
-      const response = await fetch(`http://localhost:8000/cities`);
+      const response = await fetch(`http://127.0.0.1:8001/cities`);
       if (!response.ok) {
         throw new Error("Error in network connection");
       }
@@ -65,18 +65,32 @@ function CityContextProvider({ children }) {
   }
 
   //For matching id of the city...
-  function getCity(id) {
-    const currCity = city.reduce((acc, item) => {
-      return item.id == id ? item : acc;
-    }, null);
+  // function getCity(id) {
+  //   const currCity = city.reduce((acc, item) => {
+  //     return item.id == id ? item : acc;
+  //   }, null);
 
-    dispatch({ type: "cities/loaded", payload: currCity });
+  //   dispatch({ type: "cities/loaded", payload: currCity });
+  // }
+
+  async function getCity(id) {
+    try {
+      const res = await fetch(`http://127.0.0.1:8001/cities/${id}`);
+      if (!res.ok) {
+        throw new Error(`Network Error`);
+      }
+      const data = await res.json();
+      console.log(data);
+      dispatch({ type: "cities/loaded", payload: data });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async function addNewCity(newCity) {
     dispatch({ type: "loader" });
     try {
-      const res = await fetch(`http://localhost:8000/cities`, {
+      const res = await fetch(`http://127.0.0.1:8001/cities`, {
         method: "POST",
         body: JSON.stringify(newCity),
         headers: {
@@ -87,6 +101,7 @@ function CityContextProvider({ children }) {
         throw new Error(`Network error`);
       }
       const data = await res.json();
+      console.log(data);
       dispatch({ type: "cities/created", payload: newCity });
     } catch (err) {
       dispatch({
@@ -98,7 +113,7 @@ function CityContextProvider({ children }) {
 
   async function handleRemoveCity(id) {
     try {
-      const response = await fetch(`http://localhost:8000/cities/${id}`, {
+      const response = await fetch(`http://127.0.0.1:8001/cities/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

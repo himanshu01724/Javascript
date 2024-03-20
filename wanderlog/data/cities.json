@@ -73,30 +73,6 @@
       "id": "11009922"
     },
     {
-      "id": "56a0",
-      "cityName": "Bengaluru",
-      "country": "India",
-      "date": "2024-03-18T14:14:26.678Z",
-      "notes": "Bengaluru is a hot place where no water is present",
-      "emoji": "🇮🇳",
-      "position": {
-        "lat": "12.92961458098724",
-        "lng": "77.60742187500001"
-      }
-    },
-    {
-      "id": "146c",
-      "cityName": "Moradabad",
-      "country": "India",
-      "date": "2024-03-18T14:31:44.852Z",
-      "notes": "Moradabad is a good place",
-      "emoji": "🇮🇳",
-      "position": {
-        "lat": "28.777289039997623",
-        "lng": "78.804931640625"
-      }
-    },
-    {
       "id": "ce4b",
       "cityName": "Rewari",
       "country": "India",
@@ -106,6 +82,18 @@
       "position": {
         "lat": "28.13012773787403",
         "lng": "76.60766601562501"
+      }
+    },
+    {
+      "id": "e5e5",
+      "cityName": "Thanjavur",
+      "country": "India",
+      "date": "2024-03-18T21:11:56.636Z",
+      "notes": "I don;t know this place",
+      "emoji": "🇮🇳",
+      "position": {
+        "lat": "10.768555807732437",
+        "lng": "79.15649414062501"
       }
     }
   ]

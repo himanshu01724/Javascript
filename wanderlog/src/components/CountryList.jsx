@@ -15,7 +15,8 @@ export default function CountryList() {
     );
 
   const countries = city.reduce((acc, item) => {
-    acc.push({ country: item.country, emoji: item.emoji });
+    if (!acc.some((val) => val.country === item.country))
+      acc.push({ country: item.country, emoji: item.emoji });
     return acc;
   }, []);
 
