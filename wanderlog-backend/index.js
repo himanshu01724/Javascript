@@ -4,7 +4,7 @@ const {v4 : uuidv4} = require('uuid')
 const cors = require('cors')
 
 
-const port = 8001
+const port = process.env.PORT || 8001;
 
 const app = express()
 
